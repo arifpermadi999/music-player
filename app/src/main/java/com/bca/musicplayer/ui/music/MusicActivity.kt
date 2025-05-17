@@ -106,7 +106,7 @@ class MusicActivity : AppCompatActivity() {
     }
     private fun nextMusic(){
         onPause = false;
-        list.get(position).isPlay = if (list.get(position).isPlay)  false else true;
+        list.get(position).isPlay = false;
         //next position
         val totalSize = list.size - 1;
         position = if (position == totalSize) 0 else position + 1;
@@ -117,7 +117,7 @@ class MusicActivity : AppCompatActivity() {
     }
     private fun previousMusic(){
         onPause = false;
-        list.get(position).isPlay = if (list.get(position).isPlay)  false else true;
+        list.get(position).isPlay = false;
 
         position = if (position == 0) 0 else position - 1;
         list.get(position).isPlay = if (list.get(position).isPlay)  false else true;
@@ -129,6 +129,8 @@ class MusicActivity : AppCompatActivity() {
         list.get(position).isPlay = if (list.get(position).isPlay)  false else true;
         binding.imgPlay.setImageDrawable(if (list.get(position).isPlay)  getDrawable(android.R.drawable.ic_media_pause) else getDrawable(android.R.drawable.ic_media_play) )
         if(!list.get(position).isPlay){
+            list.get(position).isPlay = false
+            adapter.notifyDataSetChanged()
             onPause = true;
             pausePreview()
         }else{
@@ -136,6 +138,8 @@ class MusicActivity : AppCompatActivity() {
                 adapter.notifyDataSetChanged()
                 playPreview(list.get(position).previewUrl)
             }else{
+                list.get(position).isPlay = true
+                adapter.notifyDataSetChanged()
                 mediaPlayer!!.start()
             }
         }
