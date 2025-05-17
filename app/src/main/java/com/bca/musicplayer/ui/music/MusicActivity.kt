@@ -1,25 +1,19 @@
 package com.bca.musicplayer.ui.music
 
-import android.icu.text.Transliterator.Position
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bca.musicplayer.R
 import com.bca.musicplayer.data.collector.ResultBound
 import com.bca.musicplayer.databinding.ActivityMusicBinding
 import com.bca.musicplayer.domain.models.Music
 import com.bca.musicplayer.ui.music.adapter.MusicAdapter
-import com.google.android.material.slider.Slider
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.Runnable
 import kotlinx.coroutines.delay
@@ -28,7 +22,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MusicActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMusicBinding
     private lateinit var musicViewModel: MusicViewModel
-    private var search: String = ""
     private lateinit var list: List<Music>;
     private lateinit var adapter: MusicAdapter;
     private var mediaPlayer: MediaPlayer? = null;
