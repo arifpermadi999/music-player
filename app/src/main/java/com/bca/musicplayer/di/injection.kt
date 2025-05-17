@@ -1,5 +1,6 @@
 package com.bca.musicplayer.di
 
+import com.bca.musicplayer.BuildConfig
 import com.bca.musicplayer.data.repository.MusicRepository
 import com.bca.musicplayer.data.source.remote.source.MusicRemoteDataSource
 import com.bca.musicplayer.domain.repository.IMusicRepository
@@ -28,8 +29,7 @@ val networkModule = module {
     }
     single {
         val retrofit = Retrofit.Builder()
-            //.baseUrl(BuildConfig.BASE_URL)
-            .baseUrl("https://itunes.apple.com/")
+            .baseUrl(BuildConfig.HOST)
             .addConverterFactory(GsonConverterFactory.create())
             .client(get())
             .build()
